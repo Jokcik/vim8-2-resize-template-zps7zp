@@ -9,8 +9,10 @@ export class ViewPortService {
   public media$: ReplaySubject<ViewPortType> = new ReplaySubject<ViewPortType>(1);
 
   constructor(@Inject('IConfig') private config: IConfig) {
+    // TODO: добавить throttle от lodash
     window.onresize = this.viewPortDetect.bind(this);
-    window.onload = this.viewPortDetect.bind(this);
+    // window.onload = this.viewPortDetect.bind(this);
+    this.viewPortDetect();
   }
 
   private viewPortDetect() {
